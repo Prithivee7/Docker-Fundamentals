@@ -1,6 +1,10 @@
 from flask import Flask, request
+import os
 
 app = Flask(__name__)
+
+if not os.path.exists("docker_bind"):
+    os.makedir("docker_bind")
 
 @app.route("/create_file",methods=["POST"])
 def run():
