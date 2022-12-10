@@ -1,0 +1,42 @@
+Building the image
+	docker build -t image_name .
+	
+Running the container
+	docker run --name container_name -p 5001:5000 image_name
+	
+Creating a volume explicitly
+	docker volume create volume_name
+
+Creating a volume while mounting
+	docker run -d -p 5000:5000 --name container_name --mount type=volume, source=volume_name, target=/app/docker_bind image_name
+	
+	----- The same command would work even if the type is not specified. Docker chooses volume based persistence by default -----
+
+	docker run -d -p 5000:5000 --name container_name --mount type=volume, source=volume_name, target=/app/docker_bind image_name
+	
+	--------------------------------------  An alternative to the above command -------------------------------------------------
+	
+	docker run -d -p 5000:5000 --name container_name -v volume_name:/app/docker_bind image_name
+	
+Listing the volumes
+	docker volume ls
+
+Inspecting the volume
+	docker volume inspect volume_name
+
+Creating a temporary file storage.
+	docker run -it --mount type=tmpfs,dst=/my_temp_storage ubuntu
+
+To remove a volume
+	docker volume rm my_volume
+
+If u want to run a ubuntu image
+docker run -d  ubuntu    -> This will run and terminate the container immediately as there is no command to execute.
+So in those cases we can use
+docker run -it ubuntu  -> This will open up a bash terminal and provide a way to get into the container
+
+For container running with -it flag we can get out of the container without exiting by ctrl+ P and ctrl+Q
+
+
+We can attach to a running container by using the attach command.
+We can't attach to a container which is stopped. It has to be started before attaching.
