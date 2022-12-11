@@ -4,6 +4,10 @@ Building the image
 Running the container
 	docker run --name container_name -p 5001:5000 image_name
 	
+Creating a bind mount
+	docker run -d -it -p 5000:5000 --name container_name --mount type=bind,source="C:\Users\prithiveer\Documents\Docker_Bind",target=/app/docker_bind image_name
+
+	
 Creating a volume explicitly
 	docker volume create volume_name
 
